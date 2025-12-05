@@ -42,6 +42,21 @@
 -   Docker Compose configurato
 -   Facilmente deployabile
 
+🌓 **Dark/Light Theme**
+
+-   Toggle tra tema scuro e chiaro
+-   Preferenza salvata in localStorage
+-   Transizioni smooth tra i temi
+-   Supporto completo per entrambi i temi
+
+📱 **Fully Responsive**
+
+-   Design mobile-first con media query
+-   Breakpoint per tablet (768px) e mobile (480px)
+-   Color-box visualizzati in colonna su dispositivi mobili
+-   Controls ottimizzati per touch
+-   Interfaccia fluida su tutte le risoluzioni
+
 ### Installazione Locale
 
 #### Prerequisiti
@@ -398,29 +413,44 @@ docker-compose build --no-cache
 ```
 palette_generator/
 ├── app/
-│   ├── __init__.py           # Flask initialization
-│   ├── palette.py            # Palette generation algorithms
-│   ├── routes.py             # API routes
+│   ├── __init__.py              # Flask app initialization
+│   ├── palette.py               # Palette generation algorithms (6 modes)
+│   ├── routes.py                # API routes & endpoints
 │   ├── templates/
-│   │   ├── base.html         # Base template
-│   │   └── index.html        # Main template
+│   │   ├── base.html            # Base HTML template
+│   │   └── index.html           # Main template with controls
 │   └── static/
 │       ├── css/
-│       │   └── style.css     # CSS styles
-│       └── js/
-│           └── main.js       # Frontend JavaScript
-├── config.py                 # Application configuration
-├── run.py                    # Entry point
-├── requirements.txt          # Python dependencies
-├── Dockerfile                # Production image
-├── Dockerfile.dev            # Development image
-├── docker-compose.yml        # Production orchestration
-├── docker-compose.dev.yml    # Development orchestration
-├── .env.example              # Example environment variables
-├── .env                      # Environment variables (local)
-├── .gitignore                # Files excluded from git
-├── .dockerignore             # Files excluded from Docker
-└── README.md                 # This file
+│       │   └── style.css        # Responsive styles (dark/light theme)
+│       ├── js/
+│       │   ├── main.js          # Palette generator & theme manager
+│       │   └── theme.js         # Deprecated (managed by main.js)
+│       └── fonts/
+│           └── Outfit-Regular.ttf
+├── config.py                    # Application configuration
+├── run.py                       # Flask entry point
+├── wsgi.py                      # WSGI/Gunicorn configuration
+├── requirements.txt             # Python dependencies
+├── .env                         # Environment variables (local)
+├── .env.example                 # Example environment variables
+├── .gitignore                   # Git ignore rules
+├── .dockerignore                # Docker ignore rules
+│
+├── Docker Configuration
+├── Dockerfile                   # Production image
+├── Dockerfile.dev               # Development image
+├── docker-compose.yml           # Production orchestration
+├── docker-compose.dev.yml       # Development orchestration
+├── docker-entrypoint.sh         # Docker entrypoint script
+│
+├── Utility Scripts
+├── build-docker.sh              # Build & push Docker image script
+├── docker-manage.sh             # Docker management CLI
+│
+├── Documentation
+├── README.md                    # Main documentation (IT/EN)
+├── README_DOCKER.md             # Docker setup guide
+└── DOCKER_DEPLOYMENT.md         # Docker deployment guide
 ```
 
 ### API Endpoints
@@ -544,10 +574,41 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 This project is available under the MIT License. See the LICENSE file for details.
 
+### Tech Stack
+
+**Backend:**
+
+-   Python 3.11
+-   Flask 3.1.2
+-   Colorsys (Python standard library)
+
+**Frontend:**
+
+-   HTML5 with Jinja2 templating
+-   CSS3 (Flexbox, Media Queries, CSS Variables)
+-   Vanilla JavaScript (ES6+)
+-   LocalStorage API
+
+**DevOps:**
+
+-   Docker & Docker Compose
+-   Python Virtual Environment
+-   Gunicorn WSGI server
+
+**Features:**
+
+-   6 color generation algorithms
+-   Dark/Light theme toggle
+-   Fully responsive design (Mobile, Tablet, Desktop)
+-   Real-time palette generation
+-   Copy to clipboard functionality
+-   Local theme preference persistence
+
 ### Support
 
 For issues, questions, or suggestions, please open an issue on GitHub or contact the development team.
 
 ---
 
-**Made with ❤️ by the Development Team**
+**Made with ❤️ by Elisa**
+**Consider supporting the project with a star on GitHub!**
