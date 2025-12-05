@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+    palette-generator:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: palette_generator
+        ports:
+            - "5000:5000"
+        environment:
+            - FLASK_ENV=production
+            - FLASK_APP=run.py
+        volumes:
+            - ./app:/app/app
+            - ./templates:/app/templates
+            - ./static:/app/static
+        restart: unless-stopped
+        networks:
+            - palette_network
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 5s
+
+networks:
+    palette_network:
+        driver: bridge
